@@ -1,0 +1,1 @@
+Configuration : voir le fichier config.inc
