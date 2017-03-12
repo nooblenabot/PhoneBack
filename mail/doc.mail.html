@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Document sans titre</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link href="doc.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>SimpleMail</h1>
+<p>La classe hda cache fourni des fonctions permettant de construire puis d'envoyer 
+  des mail teste, html avec ou sans pieces jointes.</p>
+<h2>Mise en place</h2>
+<p>Copier le fichier de classe dans un r&eacute;pertoire accessible en inclusion.</p>
+<h2>Fonctionnement</h2>
+<ul>
+  <li><code><a href="#new">$mail = new <strong>simplemail</strong>;</a></code></li>
+  <li><code><a href="#addrecipient">$mail-&gt;<strong>addrecipient(</strong>'adressmail' 
+    [ , 'nom' ] <strong>);</strong></a></code></li>
+  <li><code><a href="#addfrom">$mail-&gt;<strong>addfrom(</strong>'adressmail' 
+    [ , 'nom' ] <strong>);</strong></a></code></li>
+  <li><a href="#addcc"><code>$mail-&gt;<strong>addcc(</strong>'adressmail' [ , 
+    'nom' ] <strong>);</strong></code></a></li>
+  <li><code><a href="#addbcc">$mail-&gt;<strong>addbcc(</strong>'adressmail' [ 
+    , 'nom' ] <strong>);</strong></a></code></li>
+  <li><code><a href="#addsubject">$mail-&gt;<strong>addsubject(</strong>'subject'<strong>);</strong></a></code></li>
+  <li><code><a href="#addreturnpath">$mail-&gt;<strong>addreturnpath(</strong>'adressmail'<strong>);</strong></a></code></li>
+  <li><code><a href="#addreplyto">$mail-&gt;<strong>addreplyto(</strong>'adressmail'<strong>);</strong></a></code></li>
+  <li><code><a href="#addattachement">$mail-&gt;<strong>addattachement(</strong>'filename'<strong>);</strong></a></code></li>
+  <li><a href="#addhtmlattachement"><code>$mail-&gt;<strong>addhtmlattachement(</strong>'filename','cid','content-type'<strong>);</strong></code></a></li>
+  <li><code><a href="#text">$mail-&gt;<strong>text</strong> = 'plain text etc.';</a></code></li>
+  <li><code><a href="#html">$mail-&gt;<strong>html</strong> ='contenu html';</a></code></li>
+  <li><code><a href="#sendmail">$mail-&gt;<strong>sendmail();</strong></a></code></li>
+</ul>
+<hr />
+<p><code><a name="new" id="new"></a>$mail = new <strong>simplemail</strong>;</code></p>
+<p>constructeur des instances de mail. Il initialise les variable de la classe.</p>
+<p><code><a name="addrecipient" id="addrecipient"></a>$mail-&gt;<strong>addrecipient(</strong>'adressmail' 
+  [ , 'nom' ] <strong>);</strong></code></p>
+<p>V&eacute;rifie l'adresse mail puis ajoute un destinataire principal ( To: ). 
+  Renouveler l'appel ajoute d'autre destinataire.</p>
+<p><code><a name="addfrom" id="addfrom"></a>$mail-&gt;<strong>addfrom(</strong>'adressmail' 
+  [ , 'nom' ] <strong>);</strong></code></p>
+<p>verifie l'adresse mail puis ajoute l'expediteur (From: ). Renouveler l'appel 
+  remplace l'expediteur.</p>
+<p><code><a name="addcc" id="addcc"></a>$mail-&gt;<strong>addcc(</strong>'adressmail' 
+  [ , 'nom' ] <strong>);</strong></code></p>
+<p>verifie l'adresse mail puis ajoute un destinataire de copie conforme ( Cc: 
+  ). Renouveler l'appel ajoute d'autre destinataire.</p>
+<p><code><a name="addbcc" id="addbcc"></a>$mail-&gt;<strong>addbcc(</strong>'adressmail' 
+  [ , 'nom' ] <strong>);</strong></code></p>
+<p>verifie l'adresse mail puis ajoute un destinataire de copie conforme cach&eacute;e 
+  ( Bcc: ). Renouveler l'appel ajoute d'autre destinataire.</p>
+<p><code><a name="addsubject" id="addsubject"></a>$mail-&gt;<strong>addsubject(</strong>'subject'<strong>);</strong></code></p>
+<p>Ajoute le sujet du mail ( Subject: ). Renouveler l'appel remplace le sujet.</p>
+<p><code><a name="addreturnpath" id="addreturnpath"></a>$mail-&gt;<strong>addreturnpath(</strong>'adressmail'<strong>);</strong></code></p>
+<p>verifie l'adresse mail puis ajoute le Return-Path. Renouveler l'appel le remplace.</p>
+<p><code><a name="addreplyto" id="addreplyto"></a>$mail-&gt;<strong>addreplyto(</strong>'adressmail'<strong>);</strong></code></p>
+<p>verifie l'adresse mail puis ajoute le Reply-To. Renouveler l'appel le remplace.</p>
+<p><code><a name="addattachement" id="addattachement"></a>$mail-&gt;<strong>addattachement(</strong>'filename'<strong>);</strong></code></p>
+<p>Ajoute le fichier en piece jointe.</p>
+<p><code><a name="addhtmlattachement" id="addhtmlattachement"></a>$mail-&gt;<strong>addhtmlattachement(</strong>'filename','cid','content-type'<strong>);</strong></code></p>
+<p>Ajoute le fichier en piece jointe en vue de l'afficher dans le mail au format 
+  html ( comme des image par exemple ). <code>cid</code> ( content-id ) represente 
+  le nom auquel vous ferez reference ds votre contenu html ( ex: <code>&lt;img 
+  src=&quot;cid:monimage1&quot;&gt;</code> ) et content-type precise le type de 
+  document ( ex: <code>image/png</code> ).</p>
+<p> <code><a name="text" id="text"></a>$mail -&gt; 
+  <strong>text</strong> = 'plain text etc.';</code></p>
+<p><code>Ajoute le contenu plain-text s'il y a lieu.</code></p>
+<p> <code><a name="html" id="html"></a>$mail -&gt; <strong>html</strong> ='contenu 
+  html';</code></p>
+<p><code>Ajoute le contenu Html s'il y a lieu.</code></p>
+<p><code><a name="sendmail" id="sendmail"></a>$mail-&gt;<strong>sendmail(</strong><strong>);</strong></code></p>
+<p>Envoie effectivement le mail compos&eacute;.</p>
+</body>
+</html>

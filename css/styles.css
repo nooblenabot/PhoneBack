@@ -1,0 +1,171 @@
+/*************************************************************
+  Feuille de style de l'application de prise d'appels
+  
+  Tous les attributs définit avec le caractère "_" ne sont 
+  interprètées que par Internet Explorer 5.5  et plus.
+**************************************************************/
+BODY
+{
+  font-family : "Verdana", "Arial", "Sans-Serif" ;
+  font-size : 10pt ;
+  text-align : left ;
+  background-image : url(../images/fond.jpg) ;
+  width: 700px;
+  margin-left: 16%;
+  _margin-left: 0%;
+}
+
+IMG
+{
+	border:none;
+}
+
+H1
+{
+  color : #FFFFFF ;
+  background-image : url(../images/fond_bg2.jpg) ;
+  text-align : center ;
+  font-size : 13pt ;
+  font-family :"Arial","Verdana" ;
+  font-weight : bold ;
+}
+
+
+H2, .default_value
+{
+  color : #FF0066 ;
+  text-align : center ;
+  font-size : 10pt ;
+  font-weight : bold ;
+}
+
+
+H3
+{
+  color : #000000 ;
+  text-align : center ;
+  font-size : 10pt ;
+}
+
+H4
+{
+  color : #FFFFFF ;
+  background-image : url(../images/fond_bg4.jpg) ;
+  text-align : center ;
+  font-size : 13pt ;
+  font-family :"Arial","Verdana" ;
+  font-weight : bold ;
+}
+
+TABLE.GL
+{
+  width : 700 px ;
+  border : 0 ;
+  background-image : url(../images/fond_bg.jpg) ;
+}
+
+
+TABLE.RESULTAT
+{
+  border : black solid 1px;
+  background-color : #CCCCCC ;
+}
+
+TABLE.BAS 
+{
+	width:700px;
+	height:150px;
+	border:none;
+	font-size : 0px ;
+	margin: 0px;
+	padding: 0px;
+}
+
+TD
+{
+  font-size : 10pt ;
+  vertical-align : center ;
+  text-align : left ;
+}
+
+TD.RIGHT
+{
+  font-size : 10pt ;
+  vertical-align : center ;
+  text-align : right ;
+}
+
+
+TD.TOTAL
+{
+  font-size : 10pt ;
+  vertical-align : center ;
+  text-align : right ;
+  font-weight : bold ;
+}
+
+
+TD.MESSAGE
+{
+  font-size : 10pt ;
+  color : #FF0066 ;
+  font-weight : bold ;
+  text-align : center ;
+}
+  
+TABLE.BAS TR TD
+{
+	padding: 0px;
+	margin: 0px;
+	border:none;
+}
+  
+TH, .custo
+{
+  color : #003399 ;
+  font-size : 10pt ;
+  vertical-align : center ;
+  text-align : left ;
+}
+
+.obligatoire
+{
+  color : #003399 ;
+  font-size : 13pt ;
+  font-family :"Arial","Verdana" ;
+  font-weight : bold ;
+}
+
+.centered_value
+{
+  color : black ;
+  text-align : center ;
+  font-size : 10pt ;
+  font-weight : bold ;
+}
+
+.underlined 
+{
+	border-bottom: black 1px solid;
+}
+
+.bg-entete 
+{
+  width : 700 px ;
+  border : 0 ;
+/*  background-image : url(../images/entete-fond.gif) ;
+*/
+}
+
+.bg-baspage 
+{
+  width : 700 px ;
+  height : 150 px;
+  border : none;
+  background-image : url(../images/baspage-fond.gif) ;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: bottom;
+  margin: 0px;
+  padding: 0px;
+}
