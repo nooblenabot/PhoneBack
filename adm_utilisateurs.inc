@@ -44,7 +44,7 @@ function affiche_liste_utilisateurs()
 //    Fonction qui affiche le formulaire de remplissage
 //    des données propres à l'utilisateur
 
-function administration_ajoututilisateur_formulaire($nom="", $prenom="", $login="", $motpasse="", $motpasse2="", $mail="", $idutilisateur="")
+function administration_ajoututilisateur_formulaire($nom="", $prenom="", $login="", $motpasse="", $motpasse2="", $mail="", $idutilisateur="", $Profil="")
 {
   $etoile = chpobli();
   if ($idutilisateur=="")
@@ -65,6 +65,7 @@ function administration_ajoututilisateur_formulaire($nom="", $prenom="", $login=
     {
       var nomutil = window.document.forms["infosutilisateur"].elements["p_nom"].value;
       var prenomutil = window.document.forms["infosutilisateur"].elements["p_prenom"].value;
+	  var Profil = window.document.forms["infosutilisateur"].elements["p_profil"].value;
       var loginutil = window.document.forms["infosutilisateur"].elements["p_login"].value;
       var motpasseutil1 = window.document.forms["infosutilisateur"].elements["p_motpasse1"].value;
       var motpasseutil2 = window.document.forms["infosutilisateur"].elements["p_motpasse2"].value;
@@ -73,7 +74,7 @@ function administration_ajoututilisateur_formulaire($nom="", $prenom="", $login=
 
       // vérification que chaque champ est bien renseigné
       if ( (nomutil.length==0) || (prenomutil.length==0) || (loginutil.length==0)
-        || (motpasseutil1.length==0) || (motpasseutil2.length==0) || (mailutil.length==0) )
+        || (motpasseutil1.length==0) || (motpasseutil2.length==0) || (mailutil.length==0) || (profil.length==0) )
       {
         alert ("Vous avez oublié de remplir un champ !" ) ;
         return false ;
@@ -118,6 +119,10 @@ function administration_ajoututilisateur_formulaire($nom="", $prenom="", $login=
           <TD>Pr&eacute;nom$etoile</TD>
           <TD><INPUT type="text" name="p_prenom" value="$prenom"></TD>
         </TR>
+		<TR>
+          <TD>Profil$etoile</TD>
+          <TD><INPUT type="text" name="p_profil" value="$Profil"></TD>
+        </TR>
         <TR>
           <TD>Login$etoile</TD>
           <TD><INPUT type="text" name="p_login" value="$login"></TD>
@@ -148,16 +153,16 @@ END;
 //------------------------------------------------------------------
 //    Fonction qui insère le nouvel utilisateur dans la base
 
-function insertutilisateur($p_nom,$p_prenom,$p_login,$p_motpasse,$p_mail)
+function insertutilisateur($p_nom,$p_prenom,$p_login,$p_motpasse,$p_mail,$profil)
 {
   global $conn ;
   global $redirect ;
   global $action ;
   global $footer_msg ;
 
-  $sql =  "INSERT INTO utilisateur ( nom, prenom, login, motpasse, mail ) ".
+  $sql =  "INSERT INTO utilisateur ( nom, prenom, login, motpasse, mail, Profil ) ".
           "VALUES (".$conn->qstr($p_nom).",".$conn->qstr($p_prenom).",".$conn->qstr($p_login).",".
-                     $conn->qstr($p_motpasse).",".$conn->qstr($p_mail).")" ;
+                     $conn->qstr($p_motpasse).",".$conn->qstr($p_mail).",".$conn->qstr($p_profil).")" ;
   $res = $conn->Execute($sql) ;
   
   // Initialisation de ses droits sur l'application
@@ -183,14 +188,14 @@ function insertutilisateur($p_nom,$p_prenom,$p_login,$p_motpasse,$p_mail)
 //------------------------------------------------------------------
 //    Fonction qui va modifier la fiche d'un utilisateur
 
-function modifie_utilisateur($nom, $prenom, $login, $motpasse, $mail, $idutilisateur)
+function modifie_utilisateur($nom, $prenom, $login, $motpasse, $mail, $profil, $idutilisateur)
 {
   global $conn ;
   global $redirect ;
   global $action ;
   global $footer_msg ;
 
-  $sql = "UPDATE utilisateur SET nom=".$conn->qstr($nom).", prenom=".$conn->qstr($prenom).", login=".$conn->qstr($login).", motpasse=".$conn->qstr($motpasse).", mail=".$conn->qstr($mail)." WHERE id=".$idutilisateur ;
+  $sql = "UPDATE utilisateur SET nom=".$conn->qstr($nom).", prenom=".$conn->qstr($prenom).", login=".$conn->qstr($login).", motpasse=".$conn->qstr($motpasse).", mail=".$conn->qstr($mail).", Profil=".$conn->qstr($profil)." WHERE id=".$idutilisateur ;
   $res = $conn->Execute($sql);
   if($conn->ErrorNo() != 0)
   {

@@ -25,7 +25,7 @@ include "adm_structures.inc";
 include "adm_typesappels.inc";
 include "adm_issuesappels.inc";
 include "adm_images.inc";
-include "adm_destinataires.inc";
+//include "adm_destinataires.inc";
 
 
 //==================================================================
@@ -80,10 +80,12 @@ function choix_menu_administrer()
           <TD><INPUT type="radio" name="choix" value="6" onClick="go(this);"></TD>
           <TD>G&eacute;rer les droits d'accès</TD>
         </TR>
-        <TR>
+       </--
+	   <TR>
           <TD><INPUT type="radio" name="choix" value="8" onClick="go(this);"></TD>
           <TD>G&eacute;rer les destinataires des appels</TD>
         </TR>
+		-->
 		$separateur
         <TR>
           <TD><INPUT type="radio" name="choix" value="5" onClick="go(this);"></TD>
@@ -220,7 +222,8 @@ function administrer_switch($action)
           print ($res[0]) ;
         }
       }
-      elseif ($choix==8)
+     /*
+	 elseif ($choix==8)
       {
         // on affiche le formulaire de gestion des destinataires
         affiche_liste_destinataires();
@@ -234,9 +237,10 @@ function administrer_switch($action)
           print ($res[0]) ;
         }
       }
+	  */
       elseif ($choix==9)
       {
-        // on affiche le formulaire de gestion des destinataires
+        // on affiche le formulaire de gestion des etas des appels
         $res = affiche_liste_issuesappels();
         if($res[1] != null)
         {
@@ -447,6 +451,7 @@ function administrer_switch($action)
       $redirect = true;
       break ;
     //---------------------------------------------------------
+	/*
     case "administrer.affiche_formulaire_destinataire":
       $res=affiche_formulaire_destinataire($_REQUEST["iddest"]) ;
       if($res[1] != null)
@@ -476,6 +481,7 @@ function administrer_switch($action)
       $action = "administrer.choix";
       $redirect = true;
       break ;
+	  */
     //---------------------------------------------------------
     //=========================================================
     case "administrer.affiche_formulaire_issueappel":

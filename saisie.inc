@@ -42,15 +42,18 @@ function saisie_formulaire ($date = "", $heure="", $structure = "", $lieu = "", 
   }
 
   // génération de la selectbox de STRUCTURE APPELANTE
-  $menu_html = ListeDeChoix("SELECT nom, id, defaut FROM structure ORDER BY id ASC","structure", $structure) ;
+  $menu_html = ListeDeChoix("SELECT nom, id, defaut FROM structure WHERE Client = 'oui' ORDER BY id ASC","structure", $structure) ;
   // génération de la selectbox de HUMEUR DE L'APPELANT
     // ci-dessous : si on veut gérer l'humeur
     $menu2_html = BoutonsRadio("SELECT libelle, id, defaut, smiley FROM humeur ORDER BY id ASC","humeur", $humeur, 'smiley') ;
   //$menu2_html = "<INPUT type=\"hidden\" name=\"humeur\" value=\"3\">";
   // génération de la selectbox de TYPE D'APPEL
   $menu3_html = ListeDeChoix("SELECT libelle, id, defaut FROM type ORDER BY id ASC","type",$type, "onChange='javascript:synchro_destinataire(this.value);'") ;
-  // génération de la selectbox de DESTINATAIRE
-  $menu4_html = ListeDeChoix("SELECT prenom, id, defaut FROM destinataire ORDER BY id ASC","destinataire",$destinataire) ;
+		// 2017/03/13 remplacement pour choisir un utilisateur au lieu d'un destinataire. puis que les consultants sont forcement destinataires
+		// génération de la selectbox de DESTINATAIRE
+		//$menu4_html = ListeDeChoix("SELECT prenom, id, defaut FROM destinataire ORDER BY id ASC","destinataire",$destinataire) ;
+  // génération de la selectbox de UTILISATEUR
+  $menu4_html = ListeDeChoix("SELECT prenom, Nom, id FROM utilisateur WHERE Profil > 0 ORDER BY id ASC ","destinataire",$destinataire) ;
   // génération de la selectbox de ISSUE DE L'APPEL
   $menu5_html = ListeDeChoix("SELECT libelle, id, defaut FROM issue ORDER BY id ASC","issue",$issue) ;
 
@@ -99,7 +102,8 @@ function saisie_formulaire ($date = "", $heure="", $structure = "", $lieu = "", 
   $html = <<<END
 
       <SCRIPT LANGUAGE="JAVASCRIPT">
-        // fonction de synchronisation des destinataires par rapport aux types d'appel.
+	  
+        // fonction de synchronisation de l'heure.
         $script_synchro
 
         function reload_heure()
@@ -127,14 +131,16 @@ function saisie_formulaire ($date = "", $heure="", $structure = "", $lieu = "", 
           }
           window.document.forms["saisie"].elements["heure"].value = heuref + ":" +  minutef;
         }
+		
 
         function verifie_formulaire()
         {
-          var chpnum = window.document.forms["saisie"].elements["numero"].value ;
+         // var chpnum = window.document.forms["saisie"].elements["numero"].value ;
           var chpdate = window.document.forms["saisie"].elements["date"].value ;
           var chpheure = window.document.forms["saisie"].elements["heure"].value ;
 
-          // test du champ numéro de téléphone
+/*       
+		 // test du champ numéro de téléphone
           if (  chpnum.length !=0
                 && ( chpnum.charAt(2) != "."
                     || chpnum.charAt(5) != "."
@@ -152,8 +158,9 @@ function saisie_formulaire ($date = "", $heure="", $structure = "", $lieu = "", 
           {
             alert("Attention, le numéro de téléphone n'est pas au bon format. XX.XX.XX.XX.XX");
             return false;
-          }
-
+          }	  
+ */
+ 
           // test du champ date
           if ( chpdate.length != 10
                 || (chpdate.charAt(2) != "/") || (chpdate.charAt(5) != "/")

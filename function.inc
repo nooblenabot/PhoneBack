@@ -170,6 +170,19 @@ function chpobli ()
 }
 
 //=====================================================
+// Fonction de customisation 
+// si pas, utilisation du default
+//=====================================================
+
+function get_my_custom ($Custnom, $CustomBase)
+{
+	if (file_exists("custom/".$CustomBase."/".$Custnom)) return "custom/".$CustomBase."/".$Custnom;
+	else if (file_exists("custom/default/".$Custnom)) return "custom/default/".$Custnom;
+	else return $Custnom;
+}
+
+
+//=====================================================
 // Fonction d'affichage des images par défaut 
 // ou personnalisée, pour entete, bas de page et logo.
 //=====================================================

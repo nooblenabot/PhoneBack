@@ -44,33 +44,6 @@ CREATE TABLE `appel` (
 # --------------------------------------------------------
 
 #
-# Structure de la table `destinataire`
-#
-# Création: Mardi 06 Juin 2006 à 10:51
-# Dernière modification: Mardi 06 Juin 2006 à 12:07
-#
-
-CREATE TABLE `destinataire` (
-  `id` int(10) NOT NULL auto_increment,
-  `nom` varchar(30) NOT NULL default '',
-  `prenom` varchar(30) NOT NULL default '',
-  `mail` varchar(50) NOT NULL default '',
-  `tel` varchar(14) default NULL,
-  `defaut` char(3) default 'non',
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=287 ;
-
-#
-# Contenu de la table `destinataire`
-#
-
-INSERT INTO `destinataire` (`id`, `nom`, `prenom`, `mail`, `tel`, `defaut`) VALUES (284, 'Durand', 'Robert', 'rdurand@mondomaine.com', 'Poste 327', 'non'),
-(285, 'Dufour', 'Josiane', 'jdufour@mondomaine.com', '7997', 'non'),
-(286, 'Duchmol', 'Jean Jacques', 'jduch@mondomaine.com', '35-55', 'oui');
-
-# --------------------------------------------------------
-
-#
 # Structure de la table `destination_appel_def`
 #
 # Création: Lundi 29 Mai 2006 à 12:32
@@ -254,6 +227,7 @@ CREATE TABLE `structure` (
   `id` int(10) NOT NULL auto_increment,
   `nom` varchar(50) NOT NULL default '',
   `defaut` char(3) default 'Non',
+  `Client` char(3) default 'Oui',
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=46 ;
 
@@ -261,10 +235,38 @@ CREATE TABLE `structure` (
 # Contenu de la table `structure`
 #
 
-INSERT INTO `structure` (`id`, `nom`, `defaut`) VALUES (17, 'Collège', 'non'),
-(45, 'Service interne', 'oui'),
-(20, 'Autre', 'non'),
-(11, 'Particulier', 'non');
+INSERT INTO `structure` (`id`, `nom`, `defaut`, `client`) VALUES (17, 'Collège', 'non', 'oui'),
+(45, 'Service interne', 'oui', 'oui'),
+(20, 'Autre', 'non', 'oui'),
+(11, 'Particulier', 'non', 'oui');
+
+# --------------------------------------------------------
+
+#
+# Structure de la table `destinataire`
+#
+# Création: Mardi 06 Juin 2006 à 10:51
+# Dernière modification: Mardi 06 Juin 2006 à 12:07
+#
+
+CREATE TABLE `destinataire` (
+  `id` int(10) NOT NULL auto_increment,
+  `nom` varchar(30) NOT NULL default '',
+  `prenom` varchar(30) NOT NULL default '',
+  `mail` varchar(50) NOT NULL default '',
+  `tel` varchar(14) default NULL,
+  `id_structure` int(10) NOT NULL,
+  `defaut` char(3) default 'non',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=287 ;
+
+#
+# Contenu de la table `destinataire`
+#
+
+INSERT INTO `destinataire` (`id`, `nom`, `prenom`, `mail`, `tel`,`id_structure`, `defaut`) VALUES (284, 'Durand', 'Robert', 'rdurand@mondomaine.com', 'Poste 327',17, 'non'),
+(285, 'Dufour', 'Josiane', 'jdufour@mondomaine.com', '7997',11, 'non'),
+(286, 'Duchmol', 'Jean Jacques', 'jduch@mondomaine.com', '35-55',20, 'oui');
 
 # --------------------------------------------------------
 
@@ -308,6 +310,7 @@ CREATE TABLE `utilisateur` (
   `login` varchar(20) NOT NULL default '',
   `motpasse` varchar(10) NOT NULL default '',
   `mail` varchar(50) NOT NULL default '',
+  `Profil` int(10) NOT NULL default '0',
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=24 ;
 
@@ -315,4 +318,4 @@ CREATE TABLE `utilisateur` (
 # Contenu de la table `utilisateur`
 #
 
-INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `login`, `motpasse`, `mail`) VALUES (6, 'ADMINISTRATEUR', 'admin', 'admin', 'password', 'info@erasme.org');
+INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `login`, `motpasse`, `mail`,`Profil`) VALUES (6, 'ADMINISTRATEUR', 'admin', 'admin', 'password', 'info@erasme.org','1');
